@@ -1,0 +1,477 @@
+/* ---------- Auth: kartu entri kamus + tombol segel ---------- */
+
+.auth-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  overflow: hidden;
+  /* kertas bergaris halus, seperti halaman kamus/buku catatan */
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 27px,
+      var(--line) 28px
+    ),
+    var(--paper);
+}
+
+/* Hanja raksasa transparan di belakang kartu. 辭 (login) + 典 (register)
+   adalah dua aksara pembentuk 辭典/사전 "kamus" — satu pasang di seluruh alur auth. */
+.auth-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(220px, 42vw, 460px);
+  font-weight: 700;
+  color: var(--ink);
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 36px 32px 30px;
+  box-shadow: 0 1px 0 var(--line), 0 20px 40px -24px rgba(34, 40, 59, 0.35);
+  animation: entry-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes entry-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-entry-no {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #7a5f22; /* varian --gold yang digelapkan agar kontras teks memenuhi AA */
+  margin: 0 0 18px;
+}
+
+.auth-headword {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.auth-gloss {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+
+.auth-gloss .pos {
+  color: #7a5f22;
+  font-style: italic;
+}
+
+.auth-divider {
+  border: none;
+  border-top: 1px dashed var(--line);
+  margin: 0 0 18px;
+}
+
+.auth-tagline {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.auth-field-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.auth-inline-link {
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--seal);
+  text-decoration: none;
+}
+
+.auth-inline-link:hover {
+  text-decoration: underline;
+}
+
+.auth-info {
+  font-size: 13px;
+  color: var(--ink-soft);
+  background: rgba(34, 40, 59, 0.04);
+  border-left: 2px solid var(--line);
+  padding: 8px 10px;
+  margin: 0;
+}
+
+.auth-field input {
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  transition: border-color 0.15s ease;
+}
+
+.auth-field input:focus {
+  outline: 2px solid var(--seal);
+  outline-offset: 1px;
+  border-color: var(--seal);
+}
+
+.auth-field select {
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  transition: border-color 0.15s ease;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.auth-field select:focus {
+  outline: 2px solid var(--seal);
+  outline-offset: 1px;
+  border-color: var(--seal);
+}
+
+/* Dua field bersebelahan di layar lebar, ditumpuk di layar sempit */
+.auth-field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.auth-field-row .auth-field {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 420px) {
+  .auth-field-row {
+    flex-direction: column;
+  }
+}
+
+.auth-optional {
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  font-size: 10px;
+}
+
+/* Input kata sandi dengan tombol tampil/sembunyikan di dalamnya */
+.auth-password-wrap {
+  position: relative;
+  display: flex;
+}
+
+.auth-password-wrap input {
+  flex: 1;
+  padding-right: 92px;
+}
+
+.auth-toggle-password {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--seal);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+
+.auth-toggle-password:hover {
+  text-decoration: underline;
+}
+
+/* Pilihan tempat belajar: mandiri / LPK */
+.auth-choice-group {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-choice-btn {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.auth-choice-btn:hover {
+  border-color: var(--seal);
+  color: var(--ink);
+}
+
+.auth-choice-btn.is-active {
+  border-color: var(--seal);
+  background: rgba(178, 34, 34, 0.06);
+  color: var(--seal-dark);
+  font-weight: 600;
+}
+
+.auth-choice-btn:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 2px;
+}
+
+.auth-hint {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.auth-error {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 13px;
+  color: var(--seal-dark);
+  background: rgba(178, 34, 34, 0.06);
+  border-left: 2px solid var(--seal);
+  padding: 8px 10px;
+  margin: 0;
+}
+
+.auth-error::before {
+  content: '[오류]';
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex: none;
+}
+
+.auth-stamp-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--seal);
+  color: var(--paper-raised);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transform: rotate(-1deg);
+  box-shadow: 3px 3px 0 var(--seal-dark);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.auth-stamp-btn .stamp-mark {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--seal-dark);
+  border-radius: 5px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  transform: rotate(5deg);
+}
+
+.auth-stamp-btn:hover {
+  transform: rotate(0deg);
+  box-shadow: 4px 4px 0 var(--seal-dark);
+}
+
+/* efek "ditekan", seperti stempel basah menyentuh kertas */
+.auth-stamp-btn:active {
+  transform: translate(3px, 3px) rotate(0deg);
+  box-shadow: 0 0 0 var(--seal-dark);
+}
+
+.auth-stamp-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.auth-stamp-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: rotate(-1deg);
+  box-shadow: 3px 3px 0 var(--seal-dark);
+}
+
+.auth-crossref {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  border-top: 1px dashed var(--line);
+  margin-top: 26px;
+  padding-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.auth-crossref a {
+  color: var(--seal);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-crossref a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 380px) {
+  .auth-headword { font-size: 28px; }
+  .auth-card { padding: 30px 22px 26px; }
+}
+
+/* ---------- Dashboard ---------- */
+
+.dashboard-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 12px;
+}
+
+.dashboard-header h1 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.logout-btn {
+  flex: none;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
+.dashboard-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-link {
+  display: block;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.dashboard-link:hover {
+  border-color: var(--seal);
+}
+
+.nav-top {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 20px 0;
+  gap: 12px;
+}
+
+.nav-top a, .nav-top button {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.nav-top a:hover, .nav-top button:hover {
+  color: var(--seal);
+}
