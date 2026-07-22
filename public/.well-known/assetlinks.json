@@ -1,0 +1,9 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "fun.selep.twa",
+        "sha256_cert_fingerprints": ["FE:7A:70:82:0E:41:88:07:CF:F3:5B:6F:E7:DA:33:6A:B4:2A:1E:B5:4B:0C:3D:2A:5A:BB:CC:12:13:66:81:08"]
+      }
+    }]
+
