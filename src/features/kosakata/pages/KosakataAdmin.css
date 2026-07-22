@@ -1,0 +1,986 @@
+.ka-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 100px;
+}
+
+.ka-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 20px;
+}
+
+.ka-header-icon {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--seal);
+}
+
+.ka-header h1 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin: 0 0 2px;
+}
+
+.ka-header p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+/* ---------- Navigasi bab ---------- */
+
+.ka-bab-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ka-bab-arrow {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.ka-bab-arrow:hover:not(:disabled) {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
+.ka-bab-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ka-bab-select-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-raised);
+}
+
+.ka-bab-select-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.ka-bab-select {
+  flex: 1;
+  border: none;
+  background: none;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: var(--font-body);
+}
+
+/* ---------- Info hafalan (ringkasan tanda) ---------- */
+
+.ka-hafalan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-raised);
+}
+
+.ka-hafalan-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ka-hafalan-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ka-hafalan-item:last-child {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.ka-hafalan-label {
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+}
+
+.ka-hafalan-value {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--seal);
+}
+
+.ka-hafalan-bar {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.ka-hafalan-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--seal);
+  transition: width 0.25s ease;
+}
+
+/* ---------- Tab 19 letak ---------- */
+
+.ka-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ka-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ka-tab {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.ka-tab.active {
+  border-color: var(--seal);
+  color: var(--seal);
+  font-weight: 600;
+  background: rgba(178, 34, 34, 0.05);
+}
+
+.ka-tab-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--paper-raised);
+  background: var(--ink-soft);
+  border-radius: 999px;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.ka-tab.active .ka-tab-count {
+  background: var(--seal);
+}
+
+.ka-tab-desc {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ---------- Toolbar ---------- */
+
+.ka-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ka-search {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.ka-search:focus {
+  outline: 2px solid var(--seal);
+  outline-offset: 1px;
+}
+
+.ka-add-btn {
+  flex: none;
+  background: var(--seal);
+  color: var(--paper-raised);
+  border: none;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ka-add-btn:hover {
+  background: var(--seal-dark);
+}
+
+.ka-sql-btn {
+  flex: none;
+  background: transparent;
+  color: var(--seal);
+  border: 1px solid var(--seal);
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ka-sql-btn:hover {
+  background: var(--seal);
+  color: var(--paper-raised);
+}
+
+.ka-view-menu-wrap {
+  position: relative;
+  flex: none;
+}
+
+.ka-view-menu-btn {
+  height: 100%;
+  min-height: 40px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ka-view-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.ka-view-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+
+.ka-view-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 21;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  padding: 6px;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ka-view-menu-item {
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 10px;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.ka-view-menu-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.ka-view-menu-item.active {
+  background: var(--seal);
+  color: var(--paper-raised);
+  font-weight: 600;
+}
+
+.ka-trash-menu-btn {
+  position: relative;
+  flex: none;
+  height: 100%;
+  min-height: 40px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ka-trash-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.ka-trash-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--seal);
+  color: var(--paper-raised);
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+
+.ka-trash-modal {
+  max-width: 480px;
+  background: #ffffff;
+}
+
+.ka-trash-item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 55vh;
+  overflow-y: auto;
+  margin-bottom: 8px;
+}
+
+.ka-trash-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #f4f1ea;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.ka-trash-item-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ka-trash-item-korean {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ka-trash-item-indo {
+  font-size: 12px;
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ka-sql-modal {
+  max-width: 640px;
+}
+
+.ka-sql-help {
+  font-size: 13px;
+  color: var(--ink-soft, #666);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.ka-sql-help code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.ka-sql-textarea {
+  width: 100%;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.ka-sql-target-info {
+  font-size: 13px;
+  color: var(--ink-soft, #666);
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 12px 0;
+}
+
+.ka-sql-target-info strong {
+  color: var(--seal);
+}
+
+.ka-sql-success {
+  color: #1a7f37;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 0;
+}
+
+.ka-status,
+.ka-empty {
+  padding: 30px 10px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+/* ---------- Daftar kosakata ---------- */
+
+.ka-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ka-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px 40px;
+}
+
+.ka-card-number {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--seal);
+  color: var(--paper-raised);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+  box-shadow: 0 1px 0 var(--seal-dark);
+}
+
+.ka-card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ka-korean {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.ka-english {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 2px;
+  font-style: italic;
+}
+
+.ka-indonesian {
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.ka-keypoint {
+  font-size: 12.5px;
+  color: #7a5f22;
+  background: rgba(184, 145, 47, 0.08);
+  border-left: 2px solid var(--gold);
+  padding: 6px 8px;
+  margin: 6px 0;
+}
+
+.ka-media-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ka-media-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 9px;
+  text-decoration: none;
+}
+
+.ka-media-badge:hover {
+  border-color: var(--gold);
+  color: #7a5f22;
+}
+
+.ka-card-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ka-toggle-btn {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+
+.ka-toggle-btn:hover {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
+.ka-toggle-btn.active {
+  background: var(--seal);
+  border-color: var(--seal);
+  color: var(--paper-raised);
+}
+
+.ka-card-side {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ka-mark-btn {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink-soft);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ka-mark-btn:hover:not(:disabled) {
+  border-color: #c9971f;
+  color: #c9971f;
+}
+
+.ka-mark-btn.active {
+  background: #fff6dd;
+  border-color: #c9971f;
+  color: #c9971f;
+}
+
+.ka-mark-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ka-trash-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.55;
+}
+
+.ka-trash-btn:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ka-trash-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.ka-card-hidden {
+  padding: 10px 18px !important;
+  background: var(--paper-raised);
+  align-items: center;
+  justify-content: center;
+}
+
+.ka-card-hidden-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.ka-card-hidden-label {
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.ka-unhide-btn {
+  flex: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ka-unhide-btn:hover:not(:disabled) {
+  border-color: #9a6b3f;
+  color: #9a6b3f;
+}
+
+.ka-unhide-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ka-card-actions {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ka-edit-btn,
+.ka-delete-btn {
+  border: 1px solid var(--line);
+  background: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.ka-edit-btn:hover {
+  border-color: var(--gold);
+  color: #7a5f22;
+}
+
+.ka-delete-btn:hover {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
+.ka-delete-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ---------- Modal (form tambah/edit & picker) ---------- */
+
+.ka-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 40, 59, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+  padding: 0;
+}
+
+.ka-modal {
+  width: 100%;
+  max-width: 480px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--paper, #fdfaf3);
+  border-radius: 16px 16px 0 0;
+  padding: 22px 20px 28px;
+  animation: ka-modal-rise 0.2s ease both;
+}
+
+@keyframes ka-modal-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 560px) {
+  .ka-modal-backdrop {
+    align-items: center;
+  }
+  .ka-modal {
+    border-radius: 16px;
+  }
+}
+
+.ka-modal h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 0 0 16px;
+}
+
+.ka-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ka-form-row-2 {
+  display: flex;
+  gap: 10px;
+}
+
+.ka-form-row-2 .ka-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.ka-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ka-field span {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.ka-field input,
+.ka-field select,
+.ka-field textarea {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-family: var(--font-body);
+  resize: vertical;
+}
+
+.ka-field input:focus,
+.ka-field select:focus,
+.ka-field textarea:focus {
+  outline: 2px solid var(--seal);
+  outline-offset: 1px;
+}
+
+.ka-media-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ka-media-input-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.ka-pick-btn {
+  flex: none;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.ka-pick-btn:hover {
+  border-color: var(--gold);
+  color: #7a5f22;
+}
+
+.ka-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.ka-cancel-btn {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: none;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.ka-save-btn {
+  flex: 1;
+  border: none;
+  background: var(--seal);
+  color: var(--paper-raised);
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ka-save-btn:hover {
+  background: var(--seal-dark);
+}
+
+.ka-save-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ---------- Picker library ---------- */
+
+.ka-picker-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ka-picker-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.ka-picker-search button {
+  flex: none;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.ka-picker-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  max-height: 45vh;
+  overflow-y: auto;
+  border-top: 1px dashed var(--line);
+}
+
+.ka-picker-list li {
+  border-bottom: 1px dashed var(--line);
+}
+
+.ka-picker-list button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 11px 4px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.ka-picker-list button:hover {
+  color: var(--seal);
+}
+
+.ka-picker-close {
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .ka-form-row-2 {
+    flex-direction: column;
+  }
+}
