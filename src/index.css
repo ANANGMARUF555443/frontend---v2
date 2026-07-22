@@ -1,0 +1,50 @@
+:root {
+  --paper: transparent;
+  --paper-raised: rgba(255, 255, 255, 0.88);
+  --ink: #22283b;
+  --ink-soft: #4a5170;
+  --seal: #b22222;
+  --seal-dark: #8b1a1a;
+  --gold: #b8912f;
+  --line: #dddddd;
+
+  --font-display: 'Noto Serif KR', serif;
+  --font-body: 'Noto Sans KR', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  background: transparent;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
