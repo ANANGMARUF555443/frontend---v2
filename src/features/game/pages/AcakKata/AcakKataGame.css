@@ -1,0 +1,282 @@
+.acak-kata-page {
+  max-width: 640px;
+}
+
+.acak-kata-error {
+  color: var(--seal-dark);
+  background: rgba(178, 34, 34, 0.08);
+  border: 1px solid var(--seal);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.acak-kata-step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.acak-kata-step-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ── Tombol dasar (dipakai di semua langkah) ─────────────────────── */
+
+.btn-primary,
+.btn-secondary {
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary {
+  border: none;
+  background: var(--seal);
+  color: var(--paper-raised);
+  box-shadow: 3px 3px 0 var(--seal-dark);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0 var(--seal-dark);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--seal-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn-secondary {
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
+.acak-kata-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+/* ── Langkah 1: pilih setting/mode ────────────────────────────────── */
+
+.acak-kata-setting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.acak-kata-setting-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.acak-kata-setting-card:hover {
+  border-color: var(--seal);
+  transform: translateY(-2px);
+}
+
+.acak-kata-setting-label {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.acak-kata-setting-meta {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ── Langkah 2: pilih bab & letak ─────────────────────────────────── */
+
+.acak-kata-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.acak-kata-field select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* ── Langkah 3: tandai kosakata ───────────────────────────────────── */
+
+.acak-kata-kosakata-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.acak-kata-kosakata-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.acak-kata-kosakata-item--marked {
+  border-color: var(--seal);
+  background: rgba(178, 34, 34, 0.06);
+}
+
+.acak-kata-kosakata-korean {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.acak-kata-kosakata-arti {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-left: auto;
+}
+
+.acak-kata-kosakata-check {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.acak-kata-kosakata-item--marked .acak-kata-kosakata-check {
+  border-color: var(--seal);
+  background: var(--seal);
+  color: var(--paper-raised);
+}
+
+/* ── Langkah 4: main (soal + timer) ───────────────────────────────── */
+
+.acak-kata-main {
+  align-items: center;
+  text-align: center;
+}
+
+.acak-kata-progress {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.acak-kata-timer-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.acak-kata-timer-fill {
+  height: 100%;
+  background: var(--seal);
+  transition: width 1s linear;
+}
+
+.acak-kata-timer-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.acak-kata-soal-card {
+  width: 100%;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 40px 20px;
+  margin: 8px 0;
+}
+
+.acak-kata-soal-korean {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.acak-kata-main .acak-kata-actions {
+  width: 100%;
+  justify-content: center;
+}
+
+.acak-kata-jawaban-reveal {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ── Langkah 5: hasil ──────────────────────────────────────────────── */
+
+.acak-kata-hasil {
+  align-items: center;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.acak-kata-hasil-skor {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--seal);
+  margin: 0;
+}
+
+.acak-kata-hasil-total {
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.acak-kata-hasil .acak-kata-actions {
+  justify-content: center;
+}
