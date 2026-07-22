@@ -1,0 +1,32 @@
+{
+  "name": "사전 · Kamus Korea-Indonesia",
+  "short_name": "Kamus KR-ID",
+  "description": "Kamus, tata bahasa, dan latihan Korea-Indonesia",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b3d2e",
+  "theme_color": "#146c43",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
