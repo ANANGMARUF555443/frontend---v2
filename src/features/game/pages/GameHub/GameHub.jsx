@@ -9,13 +9,6 @@ import './GameHub.css'
 // cukup daftarkan route barunya sekali di App.jsx dan tambah di sini.
 const GAMES = [
   {
-    to: '/quiz/acak-kata',
-    icon: '亂',
-    title: 'Acak Kata',
-    desc: 'Pilih bab & kosakata sendiri, lalu uji hafalanmu sebelum waktu habis.',
-    ready: true,
-  },
-  {
     to: '/quiz/tebak-arti',
     icon: '義',
     title: 'Tebak Arti',
