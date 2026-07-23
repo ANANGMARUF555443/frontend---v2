@@ -1,0 +1,58 @@
+/* SetupPresetSelector.css */
+.game1-preset-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.game1-preset-chip-wrap {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.game1-preset-chip-wrap.is-active {
+  border-color: #0b0b0f;
+}
+
+.game1-preset-chip {
+  border: none;
+  background: transparent;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #0b0b0f;
+}
+
+.game1-preset-chip-wrap.is-active .game1-preset-chip {
+  background: #0b0b0f;
+  color: #fff;
+}
+
+.game1-preset-remove {
+  border: none;
+  background: transparent;
+  color: rgba(11, 11, 15, 0.5);
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.game1-preset-remove:hover {
+  color: #b3261e;
+}
+
+button.game1-preset-chip.is-active {
+  background: #0b0b0f;
+  color: #fff;
+  border-radius: 999px;
+  border: 1px solid #0b0b0f;
+}
+
+button.game1-preset-chip:not(.is-active) {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
