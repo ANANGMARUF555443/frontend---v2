@@ -1,0 +1,104 @@
+/* ResultGame1.css */
+.game1-result {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.game1-result-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px 0 20px;
+}
+
+.game1-result-score-num {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.game1-result-score-sub {
+  font-size: 13px;
+  color: rgba(11, 11, 15, 0.6);
+  margin-top: 6px;
+}
+
+.game1-result-stats {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.game1-result-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 14px 10px;
+}
+
+.game1-result-stat-num {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.game1-result-stat-label {
+  font-size: 11px;
+  color: rgba(11, 11, 15, 0.55);
+  margin-top: 4px;
+}
+
+.game1-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.game1-review-item {
+  border: 1px solid rgba(179, 38, 30, 0.25);
+  background: rgba(179, 38, 30, 0.04);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.game1-review-soal {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+
+.game1-review-jawaban {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.game1-review-label-salah {
+  color: #b3261e;
+}
+
+.game1-review-label-benar {
+  color: #1e8e3e;
+}
+
+.game1-result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.game1-result-actions .game1-btn-primary,
+.game1-result-actions .game1-btn-secondary {
+  flex: 1;
+}
