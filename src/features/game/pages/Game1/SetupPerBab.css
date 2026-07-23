@@ -1,0 +1,30 @@
+/* SetupPerBab.css */
+.game1-bab-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game1-bab-nav button {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.game1-bab-nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.game1-bab-nav select {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+  background: #fff;
+}
