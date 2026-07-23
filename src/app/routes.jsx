@@ -14,6 +14,11 @@ import KosakataAdmin from '../features/kosakata/pages/KosakataAdmin'
 import BukuAdmin from '../features/buku/pages/BukuAdmin'
 
 import GameHub from '../features/game/pages/GameHub/GameHub'
+import Game1 from '../features/game/pages/Game1/Game1'
+import Game2 from '../features/game/pages/Game2/Game2'
+import Game3 from '../features/game/pages/Game3/Game3'
+import Game4 from '../features/game/pages/Game4/Game4'
+import Game5 from '../features/game/pages/Game5/Game5'
 
 import FileManager from '../features/file-manager/pages/FileManager'
 
@@ -63,6 +68,46 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <GameHub />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quiz/game_1"
+        element={
+          <ProtectedRoute>
+            <Game1 />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quiz/game_2"
+        element={
+          <ProtectedRoute>
+            <Game2 />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quiz/game_3"
+        element={
+          <ProtectedRoute>
+            <Game3 />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quiz/game_4"
+        element={
+          <ProtectedRoute>
+            <Game4 />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quiz/game_5"
+        element={
+          <ProtectedRoute>
+            <Game5 />
           </ProtectedRoute>
         }
       />
