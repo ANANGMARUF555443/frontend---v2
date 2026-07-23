@@ -1,0 +1,32 @@
+/* SetupPerLetak.css */
+.game1-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.game1-chip {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #0b0b0f;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.game1-chip:hover:not(:disabled) {
+  border-color: rgba(11, 11, 15, 0.4);
+}
+
+.game1-chip.is-active {
+  background: #0b0b0f;
+  border-color: #0b0b0f;
+  color: #fff;
+}
+
+.game1-chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
