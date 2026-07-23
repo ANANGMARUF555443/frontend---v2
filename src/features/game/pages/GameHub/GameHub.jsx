@@ -9,18 +9,39 @@ import './GameHub.css'
 // cukup daftarkan route barunya sekali di App.jsx dan tambah di sini.
 const GAMES = [
   {
-    to: '/quiz/tebak-arti',
-    icon: '義',
-    title: 'Tebak Arti',
+    to: '/quiz/game_1',
+    icon: '一',
+    title: 'Game 1',
     desc: 'Segera hadir.',
-    ready: false,
+    ready: true,
   },
   {
-    to: '/quiz/dengar-ucap',
-    icon: '音',
-    title: 'Dengar & Ucap',
+    to: '/quiz/game_2',
+    icon: '二',
+    title: 'Game 2',
     desc: 'Segera hadir.',
-    ready: false,
+    ready: true,
+  },
+  {
+    to: '/quiz/game_3',
+    icon: '三',
+    title: 'Game 3',
+    desc: 'Segera hadir.',
+    ready: true,
+  },
+  {
+    to: '/quiz/game_4',
+    icon: '四',
+    title: 'Game 4',
+    desc: 'Segera hadir.',
+    ready: true,
+  },
+  {
+    to: '/quiz/game_5',
+    icon: '五',
+    title: 'Game 5',
+    desc: 'Segera hadir.',
+    ready: true,
   },
 ]
 
