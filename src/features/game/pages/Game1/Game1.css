@@ -1,6 +1,7 @@
 /* Game1.css -- mandiri sepenuhnya, tidak bergantung pada class atau
    variabel CSS dari halaman lain (Auth.css, Dashboard.css, dll).
-   Semua nilai warna/ukuran didefinisikan langsung di sini. */
+   Semua nilai warna/ukuran didefinisikan langsung di sini, dengan
+   prefix "game1-" supaya tidak bentrok dengan CSS global lain. */
 
 .game1-page {
   min-height: 100vh;
@@ -10,7 +11,19 @@
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #0b0b0f;
+}
+
+.game1-page * {
+  box-sizing: border-box;
+}
+
+.game1-loading {
+  margin: 80px auto;
+  font-size: 14px;
+  color: rgba(11, 11, 15, 0.6);
 }
 
 .game1-exit-btn {
@@ -23,8 +36,578 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 999px;
   padding: 8px 16px;
+  cursor: pointer;
 }
 
 .game1-exit-btn:hover {
   background: rgba(0, 0, 0, 0.1);
+}
+
+.game1-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+}
+
+.game1-error {
+  color: #b3261e;
+  background: rgba(179, 38, 30, 0.08);
+  border: 1px solid rgba(179, 38, 30, 0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin: 12px 0;
+  width: 100%;
+  max-width: 640px;
+}
+
+.game1-hint {
+  font-size: 12px;
+  color: rgba(11, 11, 15, 0.55);
+  margin: 6px 0 0;
+}
+
+/* ── Layout comum: setup / player / result berbagi lebar yang sama ───── */
+
+.game1-setup,
+.game1-player,
+.game1-result {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.game1-setup-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.game1-block {
+  margin: 18px 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.game1-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.game1-block-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: rgba(11, 11, 15, 0.7);
+}
+
+/* ── Preset ───────────────────────────────────────────────────────── */
+
+.game1-preset-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.game1-preset-chip-wrap {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.game1-preset-chip-wrap.is-active {
+  border-color: #0b0b0f;
+}
+
+.game1-preset-chip {
+  border: none;
+  background: transparent;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #0b0b0f;
+}
+
+.game1-preset-chip-wrap.is-active .game1-preset-chip {
+  background: #0b0b0f;
+  color: #fff;
+}
+
+.game1-preset-remove {
+  border: none;
+  background: transparent;
+  color: rgba(11, 11, 15, 0.5);
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.game1-preset-remove:hover {
+  color: #b3261e;
+}
+
+/* Chip tunggal (Ad-hoc) di luar wrap yang punya tombol remove */
+button.game1-preset-chip.is-active {
+  background: #0b0b0f;
+  color: #fff;
+  border-radius: 999px;
+  border: 1px solid #0b0b0f;
+}
+
+button.game1-preset-chip:not(.is-active) {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
+
+/* ── Jenis Game (cards grandes) ───────────────────────────────────── */
+
+.game1-option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.game1-option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  text-align: left;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.game1-option-card:hover {
+  border-color: rgba(11, 11, 15, 0.4);
+}
+
+.game1-option-card.is-active {
+  border-color: #0b0b0f;
+  background: #0b0b0f;
+  color: #fff;
+}
+
+.game1-option-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.game1-option-desc {
+  font-size: 12px;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+/* ── Chips (opsi kecil: tipe soal, mode waktu, letak, dll) ────── */
+
+.game1-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.game1-chip {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #0b0b0f;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.game1-chip:hover:not(:disabled) {
+  border-color: rgba(11, 11, 15, 0.4);
+}
+
+.game1-chip.is-active {
+  background: #0b0b0f;
+  border-color: #0b0b0f;
+  color: #fff;
+}
+
+.game1-chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Bab nav ──────────────────────────────────────────────────────── */
+
+.game1-bab-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game1-bab-nav button {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.game1-bab-nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.game1-bab-nav select {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+  background: #fff;
+}
+
+/* ── Lista de kosakata tertandai (campuran) ───────────────────────── */
+
+.game1-kosakata-pick-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.game1-kosakata-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #fafafa;
+  cursor: pointer;
+  text-align: left;
+}
+
+.game1-kosakata-pick.is-active {
+  border-color: #0b0b0f;
+  background: #0b0b0f;
+  color: #fff;
+}
+
+.game1-kosakata-pick-ko {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.game1-kosakata-pick-id {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.game1-kosakata-pick-meta {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+/* ── Save preset row ──────────────────────────────────────────────── */
+
+.game1-save-preset-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.game1-input {
+  flex: 1;
+  min-width: 160px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+}
+
+.game1-link-btn {
+  border: none;
+  background: transparent;
+  color: #0b5fff;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 6px 0;
+  text-align: left;
+}
+
+.game1-link-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Buttons principais ───────────────────────────────────────────── */
+
+.game1-btn-primary {
+  background: #0b0b0f;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game1-btn-primary:hover:not(:disabled) {
+  background: #26262e;
+}
+
+.game1-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.game1-btn-secondary {
+  background: #fff;
+  color: #0b0b0f;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.game1-btn-secondary:hover {
+  border-color: #0b0b0f;
+}
+
+.game1-btn-mulai {
+  margin-top: 24px;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+}
+
+/* ── Player (soal + timer) ────────────────────────────────────────── */
+
+.game1-player-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.game1-progress-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(11, 11, 15, 0.6);
+}
+
+.game1-timer-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.game1-timer-bar {
+  height: 100%;
+  background: #0b0b0f;
+  border-radius: 999px;
+  transition: width 1s linear;
+}
+
+.game1-timer-bar.is-critical {
+  background: #b3261e;
+}
+
+.game1-timer-detik {
+  align-self: flex-end;
+  font-size: 12px;
+  color: rgba(11, 11, 15, 0.5);
+  margin: 4px 0 20px;
+}
+
+.game1-soal-card {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.game1-soal-teks {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  word-break: keep-all;
+}
+
+.game1-opsi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.game1-opsi-grid--8,
+.game1-opsi-grid--15 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.game1-opsi {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.game1-opsi:hover:not(:disabled) {
+  border-color: rgba(11, 11, 15, 0.4);
+}
+
+.game1-opsi:disabled {
+  cursor: default;
+}
+
+.game1-opsi.is-benar {
+  background: #1e8e3e;
+  border-color: #1e8e3e;
+  color: #fff;
+}
+
+.game1-opsi.is-salah {
+  background: #b3261e;
+  border-color: #b3261e;
+  color: #fff;
+}
+
+/* ── Result ───────────────────────────────────────────────────────── */
+
+.game1-result-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px 0 20px;
+}
+
+.game1-result-score-num {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.game1-result-score-sub {
+  font-size: 13px;
+  color: rgba(11, 11, 15, 0.6);
+  margin-top: 6px;
+}
+
+.game1-result-stats {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.game1-result-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 14px 10px;
+}
+
+.game1-result-stat-num {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.game1-result-stat-label {
+  font-size: 11px;
+  color: rgba(11, 11, 15, 0.55);
+  margin-top: 4px;
+}
+
+.game1-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.game1-review-item {
+  border: 1px solid rgba(179, 38, 30, 0.25);
+  background: rgba(179, 38, 30, 0.04);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.game1-review-soal {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+
+.game1-review-jawaban {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.game1-review-label-salah {
+  color: #b3261e;
+}
+
+.game1-review-label-benar {
+  color: #1e8e3e;
+}
+
+.game1-result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.game1-result-actions .game1-btn-primary,
+.game1-result-actions .game1-btn-secondary {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .game1-soal-teks {
+    font-size: 20px;
+  }
+
+  .game1-opsi-grid--8,
+  .game1-opsi-grid--15 {
+    grid-template-columns: 1fr;
+  }
 }
