@@ -28,7 +28,7 @@ export default function AcakKataGame() {
   const [selectedSetting, setSelectedSetting] = useState(null)
 
   useEffect(() => {
-    api
+    gameApi
       .listGameSettingHafalan(token)
       .then((data) => setSettings(data.filter((s) => s.aktif)))
       .catch((err) => setError(err.message || 'Gagal memuat setting game.'))
