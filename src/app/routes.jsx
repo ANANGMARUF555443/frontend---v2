@@ -85,30 +85,6 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/quiz/game_3"
-        element={
-          <ProtectedRoute>
-            <Game3 />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/quiz/game_4"
-        element={
-          <ProtectedRoute>
-            <Game4 />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/quiz/game_5"
-        element={
-          <ProtectedRoute>
-            <Game5 />
-          </ProtectedRoute>
-        }
-      />
-      <Route
         path="/buku"
         element={
           <ProtectedRoute>
