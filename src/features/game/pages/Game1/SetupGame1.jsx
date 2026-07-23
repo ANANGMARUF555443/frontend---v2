@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { LETAK_LIST } from '../../../../shared/constants/letak'
+import { useAuth } from '../../../auth/context/AuthContext'
+import { kosakataApi } from '../../../kosakata/api'
 
 const JENIS_GAME_LABEL = {
   per_kata: 'Per Kata',
@@ -9,7 +10,7 @@ const JENIS_GAME_LABEL = {
 }
 
 const JENIS_GAME_DESC = {
-  per_kata: 'Semua kosakata yang sudah kamu tandai di satu letak, jadi soal apa adanya (tidak diacak/dikurangi).',
+  per_kata: 'Pilih bab, lalu letak -- semua kosakata di dalamnya tampil, tandai satu-satu yang mau jadi soal.',
   per_letak: 'Pilih satu bab, lalu satu atau beberapa letak di dalamnya sebagai sumber soal.',
   per_bab: 'Pilih satu bab -- semua kosakata di bab itu jadi sumber soal.',
   campuran: 'Pilih sendiri kosakata dari tanda hafalanmu, lintas bab & letak.',
@@ -41,6 +42,7 @@ function emptyForm(meta) {
 }
 
 export default function SetupGame1({ meta, presetList, tandaiList, onMulai, onSimpanPreset, onHapusPreset, onCekKetersediaan, onExit }) {
+  const { token } = useAuth()
   const [form, setForm] = useState(() => emptyForm(meta))
   const [presetTerpilih, setPresetTerpilih] = useState('') // '' = ad-hoc, else id preset
   const [ketersediaan, setKetersediaan] = useState(null) // { jumlah_tersedia, opsi_jumlah_soal }
@@ -50,38 +52,62 @@ export default function SetupGame1({ meta, presetList, tandaiList, onMulai, onSi
   const [namaPresetBaru, setNamaPresetBaru] = useState('')
   const [simpanTerbuka, setSimpanTerbuka] = useState(false)
 
-  // Kelompokkan tandaiList per letak (untuk per_kata: harus 1 letak) dan
-  // biarkan flat (untuk campuran: lintas bab/letak).
-  const tandaiPerLetak = useMemo(() => {
-    const map = {}
-    for (const t of tandaiList) {
-      if (!t.kosakata) continue
-      const key = t.kosakata.letak
-      if (!map[key]) map[key] = []
-      map[key].push(t.kosakata)
-    }
-    return map
-  }, [tandaiList])
-
-  const letakTertandaiTersedia = useMemo(
-    () => LETAK_LIST.filter((l) => (tandaiPerLetak[l.key] || []).length > 0),
-    [tandaiPerLetak]
-  )
-
+  // ── per_kata: bab -> letak -> daftar kosakata di bab+letak itu ──────
+  // Centang di sini murni state lokal (tidak memanggil endpoint tandai
+  // sama sekali) -- hanya dikirim sebagai id_kosakata_ditandai sekali,
+  // saat user menekan "Mulai".
   const [letakPerKataAktif, setLetakPerKataAktif] = useState('')
-  useEffect(() => {
-    if (!letakPerKataAktif && letakTertandaiTersedia.length > 0) {
-      setLetakPerKataAktif(letakTertandaiTersedia[0].key)
-    }
-  }, [letakTertandaiTersedia, letakPerKataAktif])
+  const [daftarKosakataPerKata, setDaftarKosakataPerKata] = useState([])
+  const [memuatKosakataPerKata, setMemuatKosakataPerKata] = useState(false)
+  const [errorKosakataPerKata, setErrorKosakataPerKata] = useState('')
 
-  // Saat pilih letak untuk per_kata, otomatis tandai semua id di letak itu.
   useEffect(() => {
-    if (form.jenis_game !== 'per_kata') return
-    const daftar = tandaiPerLetak[letakPerKataAktif] || []
-    setForm((f) => ({ ...f, id_kosakata_ditandai: daftar.map((k) => k.id) }))
+    if (!letakPerKataAktif && meta?.letak_choices?.length > 0) {
+      setLetakPerKataAktif(meta.letak_choices[0].key)
+    }
+  }, [meta, letakPerKataAktif])
+
+  // Ambil ulang daftar kosakata setiap kali bab/letak aktif untuk per_kata
+  // berubah. Pilihan centang direset (letak/bab baru = mulai bersih).
+  useEffect(() => {
+    if (form.jenis_game !== 'per_kata' || !letakPerKataAktif) return
+    let batal = false
+    setMemuatKosakataPerKata(true)
+    setErrorKosakataPerKata('')
+    kosakataApi
+      .listKosakata(token, { bab: form.bab_dipilih, letak: letakPerKataAktif })
+      .then((data) => {
+        if (batal) return
+        setDaftarKosakataPerKata(data)
+        setForm((f) => ({ ...f, id_kosakata_ditandai: [] }))
+      })
+      .catch((err) => {
+        if (batal) return
+        setErrorKosakataPerKata(err.message || 'Gagal memuat kosakata.')
+        setDaftarKosakataPerKata([])
+      })
+      .finally(() => {
+        if (!batal) setMemuatKosakataPerKata(false)
+      })
+    return () => { batal = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [letakPerKataAktif, form.jenis_game])
+  }, [form.jenis_game, form.bab_dipilih, letakPerKataAktif, token])
+
+  function toggleKosakataPerKata(id) {
+    setForm((f) => {
+      const ada = f.id_kosakata_ditandai.includes(id)
+      const next = ada ? f.id_kosakata_ditandai.filter((x) => x !== id) : [...f.id_kosakata_ditandai, id]
+      return { ...f, id_kosakata_ditandai: next }
+    })
+  }
+
+  function tandaiSemuaPerKata() {
+    setForm((f) => ({ ...f, id_kosakata_ditandai: daftarKosakataPerKata.map((k) => k.id) }))
+  }
+
+  function batalSemuaPerKata() {
+    setForm((f) => ({ ...f, id_kosakata_ditandai: [] }))
+  }
 
   function updateForm(patch) {
     setForm((f) => ({ ...f, ...patch }))
@@ -158,7 +184,7 @@ export default function SetupGame1({ meta, presetList, tandaiList, onMulai, onSi
 
   function validasiSebelumMulai() {
     if (form.jenis_game === 'per_kata' && form.id_kosakata_ditandai.length === 0) {
-      return 'Belum ada kosakata tertandai di letak ini. Tandai dulu di halaman Kosakata.'
+      return 'Tandai minimal 1 kosakata dari daftar di atas.'
     }
     if (form.jenis_game === 'per_letak' && form.letak_ditandai.length === 0) {
       return 'Pilih minimal 1 letak.'
@@ -281,34 +307,7 @@ export default function SetupGame1({ meta, presetList, tandaiList, onMulai, onSi
       </section>
 
       {/* Parameter khusus jenis_game */}
-      {form.jenis_game === 'per_kata' && (
-        <section className="game1-block">
-          <h2 className="game1-block-title">Pilih letak (dari tandaimu)</h2>
-          {letakTertandaiTersedia.length === 0 ? (
-            <p className="game1-hint">Belum ada kosakata yang ditandai. Tandai dulu di halaman Kosakata.</p>
-          ) : (
-            <>
-              <div className="game1-chip-row">
-                {letakTertandaiTersedia.map((l) => (
-                  <button
-                    key={l.key}
-                    type="button"
-                    className={`game1-chip ${letakPerKataAktif === l.key ? 'is-active' : ''}`}
-                    onClick={() => setLetakPerKataAktif(l.key)}
-                  >
-                    {l.label} ({(tandaiPerLetak[l.key] || []).length})
-                  </button>
-                ))}
-              </div>
-              <p className="game1-hint">
-                {(tandaiPerLetak[letakPerKataAktif] || []).length} kosakata akan jadi soal (1:1, tidak diacak/dikurangi).
-              </p>
-            </>
-          )}
-        </section>
-      )}
-
-      {(form.jenis_game === 'per_letak' || form.jenis_game === 'per_bab') && (
+      {(form.jenis_game === 'per_kata' || form.jenis_game === 'per_letak' || form.jenis_game === 'per_bab') && (
         <section className="game1-block">
           <h2 className="game1-block-title">Pilih Bab</h2>
           <div className="game1-bab-nav">
@@ -321,6 +320,59 @@ export default function SetupGame1({ meta, presetList, tandaiList, onMulai, onSi
             <button type="button" disabled={form.bab_dipilih >= meta.bab_count} onClick={() => updateForm({ bab_dipilih: form.bab_dipilih + 1 })}>&rsaquo;</button>
           </div>
         </section>
+      )}
+
+      {form.jenis_game === 'per_kata' && (
+        <>
+          <section className="game1-block">
+            <h2 className="game1-block-title">Pilih Letak</h2>
+            <div className="game1-chip-row">
+              {meta.letak_choices.map((l) => (
+                <button
+                  key={l.key}
+                  type="button"
+                  className={`game1-chip ${letakPerKataAktif === l.key ? 'is-active' : ''}`}
+                  onClick={() => setLetakPerKataAktif(l.key)}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className="game1-block">
+            <h2 className="game1-block-title">
+              Tandai kosakata ({form.id_kosakata_ditandai.length}/{daftarKosakataPerKata.length} dipilih)
+            </h2>
+            {memuatKosakataPerKata && <p className="game1-hint">Memuat kosakata...</p>}
+            {errorKosakataPerKata && <p className="game1-error">{errorKosakataPerKata}</p>}
+            {!memuatKosakataPerKata && !errorKosakataPerKata && (
+              daftarKosakataPerKata.length === 0 ? (
+                <p className="game1-hint">Tidak ada kosakata di bab &amp; letak ini.</p>
+              ) : (
+                <>
+                  <div className="game1-tandai-actions">
+                    <button type="button" className="game1-link-btn" onClick={tandaiSemuaPerKata}>Tandai semua</button>
+                    <button type="button" className="game1-link-btn" onClick={batalSemuaPerKata}>Batal semua</button>
+                  </div>
+                  <div className="game1-kosakata-pick-list">
+                    {daftarKosakataPerKata.map((k) => (
+                      <button
+                        key={k.id}
+                        type="button"
+                        className={`game1-kosakata-pick ${form.id_kosakata_ditandai.includes(k.id) ? 'is-active' : ''}`}
+                        onClick={() => toggleKosakataPerKata(k.id)}
+                      >
+                        <span className="game1-kosakata-pick-ko">{k.korean_text}</span>
+                        <span className="game1-kosakata-pick-id">{k.indonesian_text}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )
+            )}
+          </section>
+        </>
       )}
 
       {form.jenis_game === 'per_letak' && (
