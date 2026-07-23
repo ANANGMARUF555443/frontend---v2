@@ -16,9 +16,6 @@ import BukuAdmin from '../features/buku/pages/BukuAdmin'
 import GameHub from '../features/game/pages/GameHub/GameHub'
 import Game1 from '../features/game/pages/Game1/Game1'
 import Game2 from '../features/game/pages/Game2/Game2'
-import Game3 from '../features/game/pages/Game3/Game3'
-import Game4 from '../features/game/pages/Game4/Game4'
-import Game5 from '../features/game/pages/Game5/Game5'
 
 import FileManager from '../features/file-manager/pages/FileManager'
 
