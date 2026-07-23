@@ -14,7 +14,6 @@ import KosakataAdmin from '../features/kosakata/pages/KosakataAdmin'
 import BukuAdmin from '../features/buku/pages/BukuAdmin'
 
 import GameHub from '../features/game/pages/GameHub/GameHub'
-import AcakKataGame from '../features/game/pages/AcakKata/AcakKataGame'
 
 import FileManager from '../features/file-manager/pages/FileManager'
 
@@ -64,14 +63,6 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <GameHub />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/quiz/acak-kata"
-        element={
-          <ProtectedRoute>
-            <AcakKataGame />
           </ProtectedRoute>
         }
       />
