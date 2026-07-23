@@ -1,0 +1,83 @@
+.game1-setup {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.game1-setup-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.game1-block {
+  margin: 18px 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.game1-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.game1-block-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: rgba(11, 11, 15, 0.7);
+}
+
+.game1-option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.game1-option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  text-align: left;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.game1-option-card:hover {
+  border-color: rgba(11, 11, 15, 0.4);
+}
+
+.game1-option-card.is-active {
+  border-color: #0b0b0f;
+  background: #0b0b0f;
+  color: #fff;
+}
+
+.game1-option-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.game1-option-desc {
+  font-size: 12px;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+.game1-btn-mulai {
+  margin-top: 24px;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+}
