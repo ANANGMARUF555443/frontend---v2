@@ -10,7 +10,7 @@ export default function Game1() {
   return (
     <div className="placeholder-page game-placeholder">
       <Link className="back-link" to="/quiz">&larr; Kembali ke Quiz</Link>
-      <h1>Game 2</h1>
+      <h1>Game 1</h1>
       <p>Halaman ini belum dibangun. Segera hadir.</p>
     </div>
   )
