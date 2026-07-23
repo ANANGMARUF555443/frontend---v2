@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../../../../shared/styles/Auth.css'
+import '../../../dashboard/pages/Dashboard.css'
 import './Game2.css'
 
 // Placeholder untuk Game 2. Ganti isi return() ini dengan komponen
