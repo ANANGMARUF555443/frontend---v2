@@ -22,27 +22,7 @@ const GAMES = [
     desc: 'Segera hadir.',
     ready: true,
   },
-  {
-    to: '/quiz/game_3',
-    icon: '三',
-    title: 'Game 3',
-    desc: 'Segera hadir.',
-    ready: true,
-  },
-  {
-    to: '/quiz/game_4',
-    icon: '四',
-    title: 'Game 4',
-    desc: 'Segera hadir.',
-    ready: true,
-  },
-  {
-    to: '/quiz/game_5',
-    icon: '五',
-    title: 'Game 5',
-    desc: 'Segera hadir.',
-    ready: true,
-  },
+
 ]
 
 export default function GameHub() {
