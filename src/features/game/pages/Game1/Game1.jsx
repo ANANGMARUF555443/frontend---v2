@@ -15,3 +15,4 @@ export default function Game1() {
     </div>
   )
 }
+
