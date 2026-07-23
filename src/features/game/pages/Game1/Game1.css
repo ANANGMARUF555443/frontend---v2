@@ -355,6 +355,12 @@ button.game1-preset-chip:not(.is-active) {
   cursor: not-allowed;
 }
 
+.game1-tandai-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
 /* ── Buttons principais ───────────────────────────────────────────── */
 
 .game1-btn-primary {
